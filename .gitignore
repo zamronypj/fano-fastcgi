@@ -60,6 +60,9 @@ bin/unit/*
 # Ignore FreePascal built-in console IDE generated files
 #----------------------------------------------
 fp.dir
+fp.cfg
+fp.dsk
+fp.ini
 
 #----------------------------------------------
 # Ignore Lazarus local files (user-specific info)
