@@ -6,4 +6,6 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 {---put your routes registration here---}
-{ router.get('/', THomeControllerFactory.create()); }
+
+router.get('/', THomeControllerFactory.create());
+{$INCLUDE Home/routes.inc}

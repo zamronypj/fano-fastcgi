@@ -6,8 +6,4 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-{%dependencies.inc}
-
-{---put your dependencies registration here---}
-
-container.add('homeController', THomeControllerFactory.create());
+router.get('/home', container.get('homeController') as IRouteHandler);

@@ -15,11 +15,10 @@ uses
 
 type
 
-    TBootstrapApp = class(TFanoWebApplication)
+    TBootstrapApp = class(TSimpleFastCGIWebApplication)
     protected
         procedure buildDependencies(const container : IDependencyContainer); override;
         procedure buildRoutes(const container : IDependencyContainer); override;
-        function initDispatcher(const container : IDependencyContainer) : IDispatcher; override;
     end;
 
 implementation
@@ -30,7 +29,10 @@ uses
     (*! -------------------------------
      *   controllers factory
      *----------------------------------- *)
-    {---- put your controller factory here ---};
+    {---- put your controller factory here ---},
+    HomeControllerFactory,
+    HomeViewFactory,
+    HomeModelFactory;
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
@@ -47,10 +49,5 @@ uses
         finally
             router := nil;
         end;
-    end;
-
-    function TBootstrapApp.initDispatcher(const container : IDependencyContainer) : IDispatcher;
-    begin
-        result := container.get('dispatcher') as IDispatcher;
     end;
 end.
