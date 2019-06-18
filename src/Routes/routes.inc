@@ -7,5 +7,4 @@
  *------------------------------------------------------------- *)
 {---put your routes registration here---}
 
-router.get('/', THomeControllerFactory.create());
 {$INCLUDE Home/routes.inc}
