@@ -31,8 +31,7 @@ uses
      *----------------------------------- *)
     {---- put your controller factory here ---},
     HomeControllerFactory,
-    HomeViewFactory,
-    HomeModelFactory;
+    HomeViewFactory;
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);

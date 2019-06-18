@@ -16,7 +16,7 @@ uses
 type
 
     (*!-----------------------------------------------
-     * View instance 
+     * View instance
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
@@ -50,7 +50,13 @@ implementation
         const response : IResponse
     ) : IResponse;
     begin
-        {---put your code here---}
+        response.body().write(
+            '<html><head><title>Home</title></head>' +
+            '<body>' +
+            '<p>Hello</p>' +
+            '</body>' +
+            '</html>'
+        );
         result := response;
     end;
 

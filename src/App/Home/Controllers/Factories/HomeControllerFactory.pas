@@ -35,16 +35,12 @@ uses
     HomeController;
 
     function THomeControllerFactory.build(const container : IDependencyContainer) : IDependency;
-    var routeMiddlewares : IMiddlewareCollectionAware;
     begin
-        routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
-        try
-            result := THomeController.create(
-                routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter()
-            );
-        finally
-            routeMiddlewares := nil;
-        end;
+        result := THomeController.create(
+            TNullMiddlewareCollection.create(),
+            TNullMiddlewareCollection.create(),
+            container.get('homeView') as IView,
+            TNullViewParameters.create()
+        );
     end;
 end.
