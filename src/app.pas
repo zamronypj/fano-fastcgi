@@ -16,6 +16,8 @@ var
     appInstance : IWebApplication;
 
 begin
+    writeln('Starting application at 127.0.0.1:20477');
+
     (*!-----------------------------------------------
      * Bootstrap application
      *
