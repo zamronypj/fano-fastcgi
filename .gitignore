@@ -68,3 +68,8 @@ fp.ini
 # Ignore Lazarus local files (user-specific info)
 #----------------------------------------------
 *.lps
+
+#----------------------------------------------
+# Ignore Visual Studio Code generated files
+#----------------------------------------------
+.vscode/

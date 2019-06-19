@@ -45,10 +45,6 @@
 -Fu$USER_APP_DIR$/App/Home/Controllers/Factories
 -Fu$USER_APP_DIR$/App/Home/Views
 -Fu$USER_APP_DIR$/App/Home/Views/Factories
--Fu$USER_APP_DIR$/App/Home/Models
--Fu$USER_APP_DIR$/App/Home/Models/Factories
-
-
 
 #-Fu$USER_APP_DIR$/path/to/other/units
 #-Fu$USER_APP_DIR$/path/to/other/units
