@@ -9,7 +9,7 @@ command line tools to help scaffolding web application using Fano Framework.
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
 - Web Server (Apache, nginx)
-- - [libcurl development](https://curl.haxx.se/libcurl/)
+- [libcurl development](https://curl.haxx.se/libcurl/)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
 ## Installation
@@ -83,9 +83,9 @@ If `BUILD_TYPE` environment variable is not set, production environment will be 
 ## Change executable output directory
 
 Compilation will output executable to directory defined in `EXEC_OUTPUT_DIR`
-environment variable. By default is `public` directory.
+environment variable. By default is `bin` directory.
 
-    $ EXEC_OUTPUT_DIR=/path/to/public/dir ./build.sh
+    $ EXEC_OUTPUT_DIR=/path/to/bin/dir ./build.sh
 
 ## Change executable name
 
@@ -99,7 +99,7 @@ environment variable. By default is `app.cgi` filename.
 Run example Fano FastCGI application
 
 ```
-$ ./public/app.cgi
+$ ./bin/app.cgi
 ```
 
 By default it will listen on `127.0.0.1:20477`.
