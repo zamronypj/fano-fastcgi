@@ -37,6 +37,8 @@ uses
 
     function THomeViewFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := THomeView.create();
+        result := THomeView.create(
+            getCurrentDir() + '/src/Templates/Home/index.html'
+        );
     end;
 end.

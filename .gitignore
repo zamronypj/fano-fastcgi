@@ -46,6 +46,7 @@ build.prod.cfg
 # Ignore all generated compiled units files
 #----------------------------------------------
 bin/unit/*
+bin/*
 
 #----------------------------------------------
 # Do not ignore README.md

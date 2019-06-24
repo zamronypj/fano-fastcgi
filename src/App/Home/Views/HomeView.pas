@@ -9,6 +9,9 @@ unit HomeView;
 
 interface
 
+{$MODE OBJFPC}
+{$H+}
+
 uses
 
     fano;
@@ -21,7 +24,10 @@ type
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
     THomeView = class(TInjectableObject, IView)
+    private
+        fHtml : string;
     public
+        constructor create(const htmlFile : string);
 
         (*!------------------------------------------------
          * render view
@@ -38,6 +44,17 @@ type
 
 implementation
 
+uses
+
+    StringFileReaderImpl;
+
+    constructor THomeView.create(const htmlFile : string);
+    var fileReader : IFileReader;
+    begin
+        fileReader := TStringFileReader.create();
+        fHtml := fileReader.readFile(htmlFile);
+    end;
+
     (*!------------------------------------------------
      * render view
      *------------------------------------------------
@@ -50,13 +67,7 @@ implementation
         const response : IResponse
     ) : IResponse;
     begin
-        response.body().write(
-            '<html><head><title>Home</title></head>' +
-            '<body>' +
-            '<p>Hello</p>' +
-            '</body>' +
-            '</html>'
-        );
+        response.body().write(fHtml);
         result := response;
     end;
 
