@@ -9,6 +9,7 @@ command line tools to help scaffolding web application using Fano Framework.
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
 - Web Server (Apache, nginx)
+- - [libcurl development](https://curl.haxx.se/libcurl/)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
 ## Installation
@@ -127,7 +128,6 @@ Create virtual host config and add `ProxyPassMatch`, for example
          Options +ExecCGI
          AllowOverride FileInfo
          Require all granted
-         DirectoryIndex app.cgi
      </Directory>
 
     ProxyRequests Off
