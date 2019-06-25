@@ -8,7 +8,7 @@ command line tools to help scaffolding web application using Fano Framework.
 ## Requirement
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
-- Web Server (Apache, nginx)
+- Web Server ([Apache with mod_proxy_fcgi](https://httpd.apache.org/docs/2.4/mod/mod_proxy_fcgi.html), nginx)
 - [libcurl development](https://curl.haxx.se/libcurl/)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
