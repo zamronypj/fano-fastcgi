@@ -27,7 +27,7 @@ type
     private
         fHtml : string;
     public
-        constructor create(const htmlFile : string);
+        constructor create(const html : string);
 
         (*!------------------------------------------------
          * render view
@@ -44,15 +44,9 @@ type
 
 implementation
 
-uses
-
-    StringFileReaderImpl;
-
-    constructor THomeView.create(const htmlFile : string);
-    var fileReader : IFileReader;
+    constructor THomeView.create(const html : string);
     begin
-        fileReader := TStringFileReader.create();
-        fHtml := fileReader.readFile(htmlFile);
+        fHtml := html;
     end;
 
     (*!------------------------------------------------
