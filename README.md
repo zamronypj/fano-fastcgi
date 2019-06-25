@@ -60,7 +60,7 @@ configuration files. Following shell command is similar to command above.
     $ ./tools/config.setup.sh
     $ ./build.sh
 
-By default, it will output binary executable in `public` directory.
+By default, it will output binary executable in `bin` directory.
 
 ### Build for different environment
 
