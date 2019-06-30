@@ -33,12 +33,15 @@ uses
     {*! -------------------------------
         unit interfaces
     ----------------------------------- *}
+    StringFileReaderImpl,
     HomeView;
 
     function THomeViewFactory.build(const container : IDependencyContainer) : IDependency;
+    var fileReader : IFileReader;
     begin
+        fileReader := TStringFileReader.create();
         result := THomeView.create(
-            getCurrentDir() + '/src/Templates/Home/index.html'
+            fileReader.readFile(getCurrentDir() + '/src/Templates/Home/index.html')
         );
     end;
 end.

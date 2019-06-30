@@ -8,7 +8,7 @@ command line tools to help scaffolding web application using Fano Framework.
 ## Requirement
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
-- Web Server (Apache, nginx)
+- Web Server ([Apache with mod_proxy_fcgi](https://httpd.apache.org/docs/2.4/mod/mod_proxy_fcgi.html), nginx)
 - [libcurl development](https://curl.haxx.se/libcurl/)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
@@ -24,7 +24,7 @@ If you see something like `Free Pascal Compiler version 3.0.4`,  you are good to
 
 Clone this repository
 
-    $ git clone git@github.com:fanofamework/fano-app.git --recursive
+    $ git clone git@github.com:fanofamework/fano-fastcgi.git --recursive
 
 `--recursive` is needed so git also pull [Fano](https://github.com/fanoframework/fano) repository.
 
@@ -60,7 +60,7 @@ configuration files. Following shell command is similar to command above.
     $ ./tools/config.setup.sh
     $ ./build.sh
 
-By default, it will output binary executable in `public` directory.
+By default, it will output binary executable in `bin` directory.
 
 ### Build for different environment
 
