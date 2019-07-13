@@ -1,6 +1,7 @@
-# Fano Web Framework Skeleton Application
+# FastCGI Web Application with Fano Framework
 
-Web application skeleton using Fano Framework, Pascal web application framework
+FastCGI Web application skeleton using Fano Framework, Pascal web application framework. It listens on TCP socket.
+
 
 This project is generated using [Fano CLI](https://github.com/fanoframework/fano-cli)
 command line tools to help scaffolding web application using Fano Framework.
