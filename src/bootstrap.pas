@@ -42,7 +42,7 @@ uses
     procedure TBootstrapApp.buildRoutes(const container : IDependencyContainer);
     var router : IRouter;
     begin
-        router := container.get('router') as IRouter;
+        router := container.get(GUIDToString(IRouter)) as IRouter;
         try
             {$INCLUDE Routes/routes.inc}
         finally
