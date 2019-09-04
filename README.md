@@ -9,13 +9,10 @@ command line tools to help scaffolding web application using Fano Framework.
 ## Requirement
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
-- Web Server ([Apache with mod_proxy_fcgi](https://httpd.apache.org/docs/2.4/mod/mod_proxy_fcgi.html), nginx)
-- [libcurl development](https://curl.haxx.se/libcurl/)
+- Web Server (Apache, nginx)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
-## Installation
-
-### Build
+## Free Pascal installation
 
 Make sure [Free Pascal](https://www.freepascal.org/) is installed. Run
 
@@ -23,7 +20,7 @@ Make sure [Free Pascal](https://www.freepascal.org/) is installed. Run
 
 If you see something like `Free Pascal Compiler version 3.0.4`,  you are good to go.
 
-Clone this repository
+## Clone this repository
 
     $ git clone git@github.com:fanofamework/fano-fastcgi.git --recursive
 
@@ -33,67 +30,35 @@ If you are missing `--recursive` when you clone, you may find that `vendor/fano`
 
     $ git submodule update --init
 
-To update Fano to its latest commit, run
+## Setup required configuration
 
-    $ git checkout master && git submodule foreach --recursive git pull origin master
-
-Above command will checkout to `master` branch of this repository and pull latest update from `master` branch of [Fano](https://github.com/fanoframework/fano) repository.
-
-Copy `*.cfg.sample` to `*.cfg`.
-Make adjustment as you need in `build.cfg`, `build.prod.cfg`, `build.dev.cfg`
-and run `build.sh` shell script (if you are on Windows, then `build.cmd`).
-
-These `*.cfg` files contain some Free Pascal compiler switches that you can turn on/off to change how executable is compiled and generated. For complete
-explanation on available compiler switches, consult Free Pascal documentation.
-
-Also copy `src/config/config.json.sample` to `src/config/config.json` and edit
-configuration as needed. For example, you may need to change `baseUrl` to match your own base url so JavaScript or CSS stylesheets point to correct URL.
-
-    $ cp src/config/config.json.sample src/config/config.json
-    $ cp build.prod.cfg.sample build.prod.cfg
-    $ cp build.dev.cfg.sample build.dev.cfg
-    $ cp build.cfg.sample build.cfg
-    $ ./build.sh
-
-`tools/config.setup.sh` shell script is provided to simplify copying those
-configuration files. Following shell command is similar to command above.
+Run
 
     $ ./tools/config.setup.sh
+
+## Build application
+
+Run
+
     $ ./build.sh
 
 By default, it will output binary executable in `bin` directory.
 
-### Build for different environment
-
 To build for different environment, set `BUILD_TYPE` environment variable.
 
-#### Build for production environment
+### Build for production environment
 
     $ BUILD_TYPE=prod ./build.sh
 
 Build process will use compiler configuration defined in `vendor/fano/fano.cfg`, `build.cfg` and `build.prod.cfg`. By default, `build.prod.cfg` contains some compiler switches that will aggressively optimize executable both in speed and size.
 
-#### Build for development environment
+### Build for development environment
 
     $ BUILD_TYPE=dev ./build.sh
 
 Build process will use compiler configuration defined in `vendor/fano/fano.cfg`, `build.cfg` and `build.dev.cfg`.
 
 If `BUILD_TYPE` environment variable is not set, production environment will be assumed.
-
-## Change executable output directory
-
-Compilation will output executable to directory defined in `EXEC_OUTPUT_DIR`
-environment variable. By default is `bin` directory.
-
-    $ EXEC_OUTPUT_DIR=/path/to/bin/dir ./build.sh
-
-## Change executable name
-
-Compilation will use executable filename as defined in `EXEC_OUTPUT_NAME`
-environment variable. By default is `app.cgi` filename.
-
-    $ EXEC_OUTPUT_NAME=index.cgi ./build.sh
 
 ## Run
 
@@ -109,45 +74,7 @@ By default it will listen on `127.0.0.1:20477`.
 
 Setup a virtual host. Please consult documentation of web server you use.
 
-#### Apache
-
-You need to have `mod_proxy_fcgi` installed and loaded. This module is Apache's built-in module, so it is very likely that you will have it with your Apache installation. You just need to make sure it is loaded. For example, on Debian,
-
-```
-$ sudo a2enmod proxy_fcgi
-$ sudo systemctl restart apache2
-```
-
-Create virtual host config and add `ProxyPassMatch`, for example
-
-```
-<VirtualHost *:80>
-     ServerName www.example.com
-     DocumentRoot /home/example/public
-
-     <Directory "/home/example/public">
-         Options +ExecCGI
-         AllowOverride FileInfo
-         Require all granted
-     </Directory>
-
-    ProxyRequests Off
-    ProxyPass /css !
-    ProxyPass /images !
-    ProxyPass /js !
-    ProxyPassMatch ^/(.*)$ fcgi://127.0.0.1:20477
-</VirtualHost>
-```
-Last four line of virtual host configurations basically tell Apache to serve any
-files inside `css`, `images`, `js` directly otherwise pass it to our application.
-
-On Debian, save it to `/etc/apache2/sites-available` for example as `fano-fastcgi.conf`
-Enable this site and restart Apache
-
-```
-$ sudo a2ensite fano-fastcgi.conf
-$ sudo systemctl restart apache2
-```
+This example project is a FastCGI web application. You may want to read [Deployment as FastCGI application](https://fanoframework.github.io/deployment/fastcgi/) for more information on how to setup virtual host to deploy FastCGI web application.
 
 ## Deployment
 
@@ -179,22 +106,11 @@ Sometime FreePascal can not compile your code because, for example, you deleted 
 unit source code (.pas) but old generated unit (.ppu, .o, .a files) still there
 or when you switch between git branches. Solution is to remove those files.
 
-By default, generated compiled units are in `bin/unit` directory.
-But do not delete `README.md` file inside this directory, as it is not being ignored by git.
+Run `tools/clean.sh` to remove all compiled binaries generated during compilation.
 
 ```
-$ rm bin/unit/*.ppu
-$ rm bin/unit/*.o
-$ rm bin/unit/*.rsj
-$ rm bin/unit/*.a
+$ ./tools/clean.sh
 ```
-
-Following shell command will remove all files inside `bin/unit` directory except
-`README.md` file.
-
-    $ find bin/unit ! -name 'README.md' -type f -exec rm -f {} +
-
-`tools/clean.sh` script is provided to simplify this task.
 
 ### Windows user
 
