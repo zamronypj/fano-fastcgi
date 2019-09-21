@@ -37,10 +37,6 @@ uses
     function THomeControllerFactory.build(const container : IDependencyContainer) : IDependency;
     begin
         result := THomeController.create(
-            TMiddlewareCollectionAware.create(
-                TNullMiddlewareCollection.create(),
-                TNullMiddlewareCollection.create()
-            ),
             container.get('homeView') as IView,
             TNullViewParameters.create()
         );
