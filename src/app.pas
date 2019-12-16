@@ -26,7 +26,7 @@ begin
     appInstance := TDaemonWebApplication.create(
         TFastCgiAppServiceProvider.create(
             TServerAppServiceProvider.create(
-                TBootstrapApp.create(),
+                TMyAppServiceProvider.create(),
                 TInetSocketSvr.create('127.0.0.1', 20477)
             )
         ),
