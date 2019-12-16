@@ -15,10 +15,17 @@ uses
 
 type
 
-    TBootstrapApp = class(TSimpleFastCGIWebApplication)
-    protected
-        procedure buildDependencies(const container : IDependencyContainer); override;
-        procedure buildRoutes(const container : IDependencyContainer); override;
+    TMyAppServiceProvider = class(TDaemonAppServiceProvider)
+    public
+        procedure register(const container : IDependencyContainer); override;
+    end;
+
+    TMyAppRoutes = class(TRouteBuilder)
+    public
+        procedure buildRoutes(
+            const container : IDependencyContainer;
+            const router : IRouter
+        ); override;
     end;
 
 implementation
@@ -34,19 +41,16 @@ uses
     HomeViewFactory;
 
 
-    procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
+    procedure TMyAppServiceProvider.register(const container : IDependencyContainer);
     begin
         {$INCLUDE Dependencies/dependencies.inc}
     end;
 
-    procedure TBootstrapApp.buildRoutes(const container : IDependencyContainer);
-    var router : IRouter;
+    procedure TMyAppRoutes.buildRoutes(
+        const container : IDependencyContainer;
+        const router : IRouter
+    );
     begin
-        router := container[GUIDToString(IRouter)] as IRouter;
-        try
-            {$INCLUDE Routes/routes.inc}
-        finally
-            router := nil;
-        end;
+        {$INCLUDE Routes/routes.inc}
     end;
 end.
