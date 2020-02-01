@@ -27,7 +27,7 @@ begin
         TFastCgiAppServiceProvider.create(
             TServerAppServiceProvider.create(
                 TMyAppServiceProvider.create(),
-                TInetSocketSvr.create('127.0.0.1', 20477)
+                (TInetSvrFactory.create('127.0.0.1', 20477) as ISocketSvrFactory).build()
             )
         ),
         TMyAppRoutes.create()
